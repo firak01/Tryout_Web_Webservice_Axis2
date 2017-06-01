@@ -22,7 +22,7 @@
     <!-- Parameters -->
     <!-- ================================================= -->
     <parameter name="hotdeployment">true</parameter>
-    <parameter name="hotupdate">false</parameter>
+    <parameter name="hotupdate">true</parameter><!-- FGL: 20170601 - true gesetzt - Tip aus dem Webhttp://wso2.com/library/tutorials/live-edit-your-axis2-web-service-using-eclipse/ -->
     <parameter name="enableMTOM">false</parameter>
     <parameter name="enableSwA">false</parameter>
 
