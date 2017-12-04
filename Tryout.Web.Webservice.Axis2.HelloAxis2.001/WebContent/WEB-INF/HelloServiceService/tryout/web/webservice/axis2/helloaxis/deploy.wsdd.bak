@@ -1,15 +1,31 @@
-<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
 
   <!-- Services from HelloServiceService WSDL service -->
 
-  <service name="HelloService" provider="java:RPC" style="document" use="encoded">
+  <service name="HelloService" provider="java:RPC" style="wrapped" use="literal">
       <parameter name="wsdlTargetNamespace" value="http://helloaxis.axis2.webservice.web.tryout"/>
       <parameter name="wsdlServiceElement" value="HelloServiceService"/>
+      <parameter name="schemaQualified" value="http://helloaxis.axis2.webservice.web.tryout"/>
       <parameter name="wsdlServicePort" value="HelloService"/>
-      <parameter name="className" value="tryout.web.webservice.axis2.helloaxis.HelloService"/>
+      <parameter name="className" value="tryout.web.webservice.axis2.helloaxis.HelloServiceSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="HelloService"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <parameter name="allowedMethods" value="*"/>
+      <operation name="sayHello" qname="operNS:sayHello" xmlns:operNS="http://helloaxis.axis2.webservice.web.tryout" returnQName="retNS:sayHelloReturn" xmlns:retNS="http://helloaxis.axis2.webservice.web.tryout" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:name" xmlns:pns="http://helloaxis.axis2.webservice.web.tryout" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getNow" qname="operNS:getNow" xmlns:operNS="http://helloaxis.axis2.webservice.web.tryout" returnQName="retNS:getNowReturn" xmlns:retNS="http://helloaxis.axis2.webservice.web.tryout" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="getNow sayHello"/>
 
   </service>
 </deployment>
